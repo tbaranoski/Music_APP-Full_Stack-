@@ -1,29 +1,14 @@
 
-import React, {useState, useEffect } from 'react'
-import Login from './components/Login'
+import React, {useState, useEffect } from 'react';
+import Login from './components/login';
 
 function App(){
   
-  const [data,setData] = useState([{}])
   
-  useEffect (() => {
-    fetch("/members").then(
-      res => res.json()
-    ).then(
-        data => {
-          setData(data)
-          console.log(data)
-        }
-    )
-  }, [])
-
-  //console.log("hello")
-
   return (
     <div>
       <Login />
-      
-
+          
     </div>
   )
 }

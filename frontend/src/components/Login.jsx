@@ -1,23 +1,35 @@
-import React from "react";
+import React, {useState, useEffect } from 'react'
 import styled from "styled-components";
 
-//Login function
-export default function Login(){
-    
-    //handle click event
-    const handleClick = () =>{
+//const URL_LOGIN = 'http://127.0.0.1:5000/spotify_authenticate';
 
-        alert("clicked");
+
+//Login function for starting backend
+export default function Login(){    
+    const [data,setData] = useState([{}])
+
+    const LoginClick = () => {
+        //API backend call
+        fetch("/spotify_authenticate")
+            .then(req => req.json()
+            )               
+            .then(
+                data => {
+                    setData(data)
+                    console.log(data)
+                }
+            )            
     };
 
-    return <Container>
+    return (
+    
+    <Container>
         <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Black.png" 
-        alt="spotify">            
-        </img>
-        <button onClick={handleClick}>Connect Spotify</button>
-
-    </Container>;
-
+        alt="spotify"
+        />
+        <button onClick={LoginClick}>Connect Spotify</button>               
+    </Container>
+    );
 }
 
 const Container = styled.div`
@@ -36,12 +48,12 @@ const Container = styled.div`
         width: 30rem;
         align-items: center;
         justify-content: center;
-        padding: 1rem 5rem;
+        padding:1.3rem 5rem;
         border-radius: 5rem;
         border: none;
         background-color: black;
         color: #49f585;
-        font-size: 1.6rem;
+        font-size: 1.9rem;
         cursor: pointer;
     }
 `;
